@@ -1,0 +1,23 @@
+#logo {
+    font-family: "Lilita One", "Ubuntu", "Trebuchet MS", "Lucida Sans Unicode",
+        "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+#header a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#header button {
+    margin: 0 5px;
+    color: inherit;
+}
+
+#header button:hover {
+    background-color: #5b794c;
+}
+
+#header button svg {
+    margin-right: 5px;
+    margin-bottom: 1px;
+}
