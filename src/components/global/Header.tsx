@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
     AppBar,
     Box,
@@ -29,10 +29,12 @@ const Header = () => {
                     </Link>
                     <Stack direction="row">
                         <Box display={{ xs: "none", md: "initial" }}>
-                            <Button>
-                                <CheckBoxOutlineBlank />
-                                Box Breathing
-                            </Button>
+                            <NavLink to="/boxbreathing">
+                                <Button>
+                                    <CheckBoxOutlineBlank />
+                                    Box Breathing
+                                </Button>
+                            </NavLink>
                             <Button>
                                 <HeadsetOutlined />
                                 Soundscapes

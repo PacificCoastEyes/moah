@@ -1,0 +1,88 @@
+#breath-box {
+    border: 20px solid #ccc;
+    border-radius: 10px;
+    color: #769469;
+}
+
+#breath-box h2 {
+    font-family: "Lilita One", "Ubuntu", "Trebuchet MS", "Lucida Sans Unicode",
+        "Lucida Grande", "Lucida Sans", Arial, sans-serif !important;
+}
+
+#breath-box.breath-box-phase-inhale {
+    border-top-color: #769469 !important;
+}
+
+#breath-box-text.breath-box-phase-inhale::before {
+    content: "Breathe In";
+}
+
+#breath-box.breath-box-phase-hold1 {
+    border-right-color: #769469 !important;
+}
+
+#breath-box-text.breath-box-phase-hold1::before {
+    content: "Hold";
+}
+
+#breath-box.breath-box-phase-exhale {
+    border-bottom-color: #769469 !important;
+}
+
+#breath-box-text.breath-box-phase-exhale::before {
+    content: "Breathe Out";
+}
+
+#breath-box.breath-box-phase-hold2 {
+    border-left-color: #769469 !important;
+}
+
+#breath-box-text.breath-box-phase-hold2::before {
+    content: "Hold";
+}
+
+#breath-circle-wrapper {
+    height: 300px;
+    width: 300px;
+}
+
+#breath-circle {
+    fill: #769469;
+    transform-origin: center;
+}
+
+#breath-circle.breath-box-phase-inhale {
+    animation: inhale 5s ease-in-out;
+}
+
+#breath-circle.breath-box-phase-exhale {
+    animation: exhale 5s ease-in-out;
+}
+
+#breath-circle.breath-box-phase-hold1 {
+    transform: scale(2);
+}
+
+@keyframes inhale {
+    from {
+        transform: scale(1);
+    }
+
+    80% {
+        transform: scale(2);
+    }
+
+    to {
+        transform: scale(2);
+    }
+}
+
+@keyframes exhale {
+    from {
+        transform: scale(2);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}

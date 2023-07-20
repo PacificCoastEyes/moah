@@ -35,128 +35,110 @@ const Hero = () => {
     };
 
     return (
-        <main id="hero">
-            <Box maxWidth={{ xs: "initial", md: "60%" }}>
+        <Box id="hero" maxWidth={{ xs: "initial", md: "60%" }}>
+            <Grid
+                container
+                justifyContent="center"
+                rowSpacing={5}
+                padding={{ xs: "20px", md: "50px 200px" }}
+            >
+                <Grid item xs={12} md={6} alignSelf="center">
+                    <Typography id="hero-for" variant="h2" textAlign="center">
+                        For
+                    </Typography>
+                </Grid>
                 <Grid
-                    container
+                    item
+                    xs={12}
+                    md={6}
+                    display="flex"
                     justifyContent="center"
+                >
+                    <img
+                        src={DesertSunset}
+                        onLoad={() => handleOnLoad("desertSunset")}
+                        style={
+                            displayHeroImages
+                                ? { display: "block" }
+                                : { display: "none" }
+                        }
+                        alt="Desert sunset"
+                    />
+                    {!displayHeroImages && (
+                        <Skeleton variant="rounded" width={200} height={133} />
+                    )}
+                </Grid>
+                <Grid
+                    item
+                    container
+                    xs={12}
+                    md={12}
                     rowSpacing={5}
-                    padding={{ xs: "20px", md: "50px 200px" }}
+                    flexDirection={{ xs: "initial", md: "row-reverse" }}
                 >
                     <Grid item xs={12} md={6} alignSelf="center">
                         <Typography
-                            id="hero-for"
+                            id="hero-the"
                             variant="h2"
                             textAlign="center"
                         >
-                            For
+                            the
                         </Typography>
                     </Grid>
                     <Grid
                         item
+                        display="flex"
                         xs={12}
                         md={6}
-                        display="flex"
                         justifyContent="center"
                     >
                         <img
-                            src={DesertSunset}
-                            onLoad={() => handleOnLoad("desertSunset")}
+                            src={Forest}
+                            onLoad={() => handleOnLoad("forest")}
                             style={
                                 displayHeroImages
                                     ? { display: "block" }
                                     : { display: "none" }
                             }
-                            alt="Desert sunset"
+                            alt="Forest"
                         />
                         {!displayHeroImages && (
                             <Skeleton
                                 variant="rounded"
                                 width={200}
-                                height={100}
-                            />
-                        )}
-                    </Grid>
-                    <Grid
-                        item
-                        container
-                        xs={12}
-                        md={12}
-                        rowSpacing={5}
-                        flexDirection={{ xs: "initial", md: "row-reverse" }}
-                    >
-                        <Grid item xs={12} md={6} alignSelf="center">
-                            <Typography
-                                id="hero-your"
-                                variant="h2"
-                                textAlign="center"
-                            >
-                                Your
-                            </Typography>
-                        </Grid>
-                        <Grid
-                            item
-                            display="flex"
-                            xs={12}
-                            md={6}
-                            justifyContent="center"
-                        >
-                            <img
-                                src={Forest}
-                                onLoad={() => handleOnLoad("forest")}
-                                style={
-                                    displayHeroImages
-                                        ? { display: "block" }
-                                        : { display: "none" }
-                                }
-                                alt="Forest"
-                            />
-                            {!displayHeroImages && (
-                                <Skeleton
-                                    variant="rounded"
-                                    width={200}
-                                    height={100}
-                                />
-                            )}
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={12} md={6} alignSelf="center">
-                        <Typography
-                            id="hero-mind"
-                            variant="h2"
-                            textAlign="center"
-                        >
-                            Mind.
-                        </Typography>
-                    </Grid>
-                    <Grid
-                        item
-                        xs={12}
-                        md={6}
-                        display="flex"
-                        justifyContent="center"
-                    >
-                        <img
-                            src={WaterRipple}
-                            onLoad={() => handleOnLoad("waterRipple")}
-                            style={
-                                displayHeroImages
-                                    ? { display: "block" }
-                                    : { display: "none" }
-                            }
-                            alt="Water ripples"
-                        />
-                        {!displayHeroImages && (
-                            <Skeleton
-                                variant="rounded"
-                                width={200}
-                                height={100}
+                                height={133}
                             />
                         )}
                     </Grid>
                 </Grid>
-            </Box>
-        </main>
+                <Grid item xs={12} md={6} alignSelf="center">
+                    <Typography id="hero-mind" variant="h2" textAlign="center">
+                        mind.
+                    </Typography>
+                </Grid>
+                <Grid
+                    item
+                    xs={12}
+                    md={6}
+                    display="flex"
+                    justifyContent="center"
+                >
+                    <img
+                        src={WaterRipple}
+                        onLoad={() => handleOnLoad("waterRipple")}
+                        style={
+                            displayHeroImages
+                                ? { display: "block" }
+                                : { display: "none" }
+                        }
+                        alt="Water ripples"
+                    />
+                    {!displayHeroImages && (
+                        <Skeleton variant="rounded" width={200} height={133} />
+                    )}
+                </Grid>
+            </Grid>
+        </Box>
     );
 };
 
