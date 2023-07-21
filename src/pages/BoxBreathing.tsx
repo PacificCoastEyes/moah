@@ -1,11 +1,15 @@
+import { useCallback, useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import Footer from "../components/global/Footer";
 import Header from "../components/global/Header";
 import WallpaperWrapper from "../components/global/WallpaperWrapper";
 import "../styles/pages/BoxBreathing.css";
-import { useCallback, useEffect, useState } from "react";
 
 const BoxBreathing = () => {
+    useEffect(() => {
+        document.title = "Box Breathing - Moah.";
+    }, []);
+
     const [breathBoxPhaseIndex, setBreathBoxPhaseIndex] = useState<number>(0);
 
     const breathBoxPhases: string[] = ["inhale", "hold1", "exhale", "hold2"];

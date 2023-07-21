@@ -56,7 +56,7 @@
 }
 
 #breath-circle.breath-box-phase-exhale {
-    animation: exhale 5s ease-in-out;
+    animation: exhale 4s ease-in-out;
 }
 
 #breath-circle.breath-box-phase-hold1 {

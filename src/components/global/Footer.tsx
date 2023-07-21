@@ -7,12 +7,13 @@ const Footer = () => {
             id="footer"
             maxWidth={false}
             sx={{
+                height: { xs: "100px", md: "initial" },
                 display: "flex",
                 justifyContent: { xs: "center", md: "initial" },
-                alignItems: "center",
+                alignItems: { xs: "flex-start", md: "center" },
             }}
         >
-            <Typography variant="body2">
+            <Typography variant="body2" marginTop={{ xs: "12px", md: "0" }}>
                 <a
                     href="https://flyingcolors.tech"
                     rel="noreferrer"
@@ -20,8 +21,7 @@ const Footer = () => {
                 >
                     Flying Colors Web Studio
                 </a>{" "}
-                &copy; {new Date().getFullYear()} Amitai Zand. All rights
-                reserved.
+                &copy; {new Date().getFullYear()} Amitai Zand
             </Typography>
         </Container>
     );
