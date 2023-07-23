@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Box, Grid, Skeleton, Typography } from "@mui/material";
-import DesertSunset from "../../images/desert-sunset.jpg";
-import Forest from "../../images/forest.jpg";
-import WaterRipple from "../../images/water-ripple.jpg";
+import DesertSunset from "../../images/hero/desert-sunset.jpg";
+import Forest from "../../images/hero/forest.jpg";
+import WaterRipple from "../../images/hero/water-ripple.jpg";
 import "../../styles/components/Hero.css";
 
 interface LoadStatusObject {
@@ -35,7 +35,7 @@ const Hero = () => {
     };
 
     return (
-        <Box id="hero" maxWidth={{ xs: "initial", md: "60%" }}>
+        <Box id="hero" maxWidth={{ xs: "initial", md: "60%" }} marginY="auto">
             <Grid
                 container
                 justifyContent="center"

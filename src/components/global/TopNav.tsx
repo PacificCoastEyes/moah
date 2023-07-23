@@ -25,10 +25,12 @@ const TopNav = () => {
                                 Box Breathing
                             </Button>
                         </NavLink>
-                        <Button>
-                            <HeadsetOutlined />
-                            Soundscapes
-                        </Button>
+                        <NavLink to="/soundscapes">
+                            <Button>
+                                <HeadsetOutlined />
+                                Soundscapes
+                            </Button>
+                        </NavLink>
                         <Button>
                             <EditNoteOutlined />
                             Journal

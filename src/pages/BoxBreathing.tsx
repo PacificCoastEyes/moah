@@ -1,13 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
-import { Box, Typography } from "@mui/material";
-import Footer from "../components/global/Footer";
+import { Box } from "@mui/material";
 import Header from "../components/global/Header";
 import WallpaperWrapper from "../components/global/WallpaperWrapper";
+import BreathBox from "../components/BoxBreathing/BreathBox";
+import BreathCircle from "../components/BoxBreathing/BreathCircle";
+import Footer from "../components/global/Footer";
 import "../styles/pages/BoxBreathing.css";
 
 const BoxBreathing = () => {
     useEffect(() => {
-        document.title = "Box Breathing - Moah.";
+        document.title = "Box Breathing | Moah.";
     }, []);
 
     const [breathBoxPhaseIndex, setBreathBoxPhaseIndex] = useState<number>(0);
@@ -28,46 +30,21 @@ const BoxBreathing = () => {
     }, [rotateBreathBoxPhase]);
 
     return (
-        <div id="home" className="page">
+        <div id="box-breathing" className="page">
             <Header />
             <WallpaperWrapper>
                 <Box
+                    id="box-breathing-content"
                     width={{ xs: "95%", md: "75%" }}
                     display="flex"
                     flexDirection={{ xs: "column", md: "row" }}
                     justifyContent="space-evenly"
                     alignItems="center"
                 >
-                    <Box
-                        id="breath-box"
-                        className={`breath-box-phase-${breathBoxPhases[breathBoxPhaseIndex]}`}
-                        height={{ xs: "200px", md: "300px" }}
-                        width={{ xs: "200px", md: "300px" }}
-                        display="flex"
-                        justifyContent="center"
-                        alignItems="center"
-                    >
-                        <Typography
-                            id="breath-box-text"
-                            className={`breath-box-phase-${breathBoxPhases[breathBoxPhaseIndex]}`}
-                            variant="h2"
-                            fontSize={{ xs: "2.5em", md: "3.75em" }}
-                            textAlign="center"
-                        ></Typography>
-                    </Box>
-                    <svg
-                        id="breath-circle-wrapper"
-                        viewBox="0 0 100 100"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <circle
-                            id="breath-circle"
-                            className={`breath-box-phase-${breathBoxPhases[breathBoxPhaseIndex]}`}
-                            cx="50"
-                            cy="50"
-                            r="15"
-                        />
-                    </svg>
+                    <BreathBox phase={breathBoxPhases[breathBoxPhaseIndex]} />
+                    <BreathCircle
+                        phase={breathBoxPhases[breathBoxPhaseIndex]}
+                    />
                 </Box>
             </WallpaperWrapper>
             <Footer />

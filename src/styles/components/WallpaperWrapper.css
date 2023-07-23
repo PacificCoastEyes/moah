@@ -1,7 +1,6 @@
 #wallpaper-wrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
     background-image: url("../../images/leaf_motif.svg");
     background-size: contain;
 }
