@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, IconButton } from "@mui/material";
 import SoundscapeList from "../../lib/SoundscapeList";
@@ -30,6 +30,15 @@ const SoundscapePlayerContainer = ({ selection }: { selection: string }) => {
         };
     }, [isPlaying, player]);
 
+    useEffect(() => {
+        const handleSpaceBar = (e: KeyboardEvent) => {
+            if (e.key === " ") setIsPlaying(!isPlaying);
+        };
+
+        document.addEventListener("keydown", handleSpaceBar);
+        return () => document.removeEventListener("keydown", handleSpaceBar);
+    }, [isPlaying]);
+
     return (
         <Box
             id="soundscape-player-container"
@@ -43,7 +52,10 @@ const SoundscapePlayerContainer = ({ selection }: { selection: string }) => {
                 backgroundSize: "cover",
             }}
         >
-            <IconButton onClick={() => navigate("/soundscapes")}>
+            <IconButton
+                onClick={() => navigate("/soundscapes")}
+                sx={{ marginRight: 1 }}
+            >
                 <ArrowCircleLeftOutlined id="soundscape-back" />
             </IconButton>
             <IconButton onClick={() => setIsPlaying(!isPlaying)}>
