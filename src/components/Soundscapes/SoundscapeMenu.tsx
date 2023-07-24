@@ -20,7 +20,7 @@ const SoundscapeMenu = () => {
                 borderRadius: "10px",
             }}
         >
-            {SoundscapeList.map(soundscape => {
+            {Object.values(SoundscapeList).map(soundscape => {
                 return (
                     <Grid
                         item

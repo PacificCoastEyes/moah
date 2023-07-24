@@ -1,41 +1,43 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Header from "../components/global/Header";
-import SoundscapeMenu from "../components/Soundscapes/SoundscapeMenu";
-import Footer from "../components/global/Footer";
 import WallpaperWrapper from "../components/global/WallpaperWrapper";
-import { Box, Typography } from "@mui/material";
+import SoundscapeMenuContainer from "../components/Soundscapes/SoundscapeMenuContainer";
+import SoundscapePlayerContainer from "../components/Soundscapes/SoundscapePlayerContainer";
+import SoundscapeList from "../lib/SoundscapeList";
+import Footer from "../components/global/Footer";
 
 const Soundscapes = () => {
+    const navigate = useNavigate();
+
     useEffect(() => {
         document.title = "Soundscapes | Moah.";
     }, []);
 
+    const [params] = useSearchParams();
+    const [selection, setSelection] = useState<string | null>(null);
+
+    useEffect(() => {
+        const query = params.get("selection");
+        if (Object.keys(SoundscapeList).includes(query as string)) {
+            setSelection(query);
+        } else {
+            navigate("/soundscapes");
+            setSelection(null);
+        }
+    }, [params, navigate]);
+
     return (
         <div id="soundscapes" className="page">
             <Header />
-            <WallpaperWrapper>
-                <Box
-                    id="soundscapes-content"
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent={{ xs: "flex-start", md: "center" }}
-                    alignItems="center"
-                    marginTop={3}
-                    marginBottom={{ xs: 0, md: 3 }}
-                >
-                    <Typography
-                        variant="h4"
-                        marginBottom={3}
-                        sx={{
-                            color: "#769469",
-                            fontFamily: "'Lilita One', Arial, sans-serif",
-                        }}
-                    >
-                        Choose a Soundscape
-                    </Typography>
-                    <SoundscapeMenu />
-                </Box>
-            </WallpaperWrapper>
+            {selection ? (
+                <SoundscapePlayerContainer selection={selection} />
+            ) : (
+                <WallpaperWrapper>
+                    <SoundscapeMenuContainer />
+                </WallpaperWrapper>
+            )}
+
             <Footer />
         </div>
     );

@@ -1,0 +1,48 @@
+#soundscape-player-container.ocean {
+    background-position-y: 70%;
+}
+#soundscape-player-container.forest,
+#soundscape-player-container.coffeeShop,
+#soundscape-player-container.fireplace {
+    background-position-y: 60%;
+}
+
+#soundscape-play,
+#soundscape-pause,
+#soundscape-back {
+    fill: white;
+    background-color: #769469;
+    stroke: #769469;
+    border-radius: 50%;
+    box-shadow: 2px 2px 10px 2px #444;
+}
+
+#soundscape-play:hover,
+#soundscape-pause:hover,
+#soundscape-back:hover {
+    box-shadow: 2px 2px 10px 2px #333;
+}
+
+#soundscape-play,
+#soundscape-pause {
+    height: 195px;
+    width: 195px;
+}
+
+#soundscape-back {
+    width: 75px;
+    height: 75px;
+}
+
+@media screen and (max-width: 600px) {
+    #soundscape-player-container.ocean,
+    #soundscape-player-container.forest,
+    #soundscape-player-container.rain,
+    #soundscape-player-container.coffeeShop {
+        background-position-x: 30%;
+    }
+
+    #soundscape-player-container.rain {
+        background-position-x: 25%;
+    }
+}
