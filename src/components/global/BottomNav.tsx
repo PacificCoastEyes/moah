@@ -14,8 +14,8 @@ const BottomNav = () => {
     enum pageSlugs {
         "boxbreathing",
         "soundscapes",
-        "journal",
         "inspiration",
+        "journal",
     }
 
     // eslint-disable-next-line
@@ -50,14 +50,14 @@ const BottomNav = () => {
                 icon={<HeadsetOutlined />}
             />
             <BottomNavigationAction
-                id="journal"
-                label="Journal"
-                icon={<EditNoteOutlined />}
-            />
-            <BottomNavigationAction
                 id="inspiration"
                 label="Inspiration"
                 icon={<TipsAndUpdatesOutlined />}
+            />
+            <BottomNavigationAction
+                id="journal"
+                label="Journal"
+                icon={<EditNoteOutlined />}
             />
         </BottomNavigation>
     );

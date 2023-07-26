@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import BoxBreathing from "./pages/BoxBreathing";
 import Soundscapes from "./pages/Soundscapes";
+import Inspiration from "./pages/Inspiration";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import MuiTheme from "./lib/MuiTheme";
 import "./styles/global/App.css";
@@ -20,6 +21,7 @@ function App() {
                             element={<BoxBreathing />}
                         />
                         <Route path="/soundscapes" element={<Soundscapes />} />
+                        <Route path="/inspiration" element={<Inspiration />} />
                         <Route path="*" element={<Home />} />
                     </Routes>
                 </BrowserRouter>

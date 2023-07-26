@@ -31,14 +31,18 @@ const TopNav = () => {
                                 Soundscapes
                             </Button>
                         </NavLink>
-                        <Button>
-                            <EditNoteOutlined />
-                            Journal
-                        </Button>
-                        <Button>
-                            <TipsAndUpdatesOutlined />
-                            Inspiration
-                        </Button>
+                        <NavLink to="/inspiration">
+                            <Button>
+                                <TipsAndUpdatesOutlined />
+                                Inspiration
+                            </Button>
+                        </NavLink>
+                        <NavLink to="/journal">
+                            <Button>
+                                <EditNoteOutlined />
+                                Journal
+                            </Button>
+                        </NavLink>
                     </Box>
                     <Button>
                         <LoginOutlined />
