@@ -32,12 +32,12 @@ const SoundscapePlayerContainer = ({ selection }: { selection: string }) => {
 
     useEffect(() => {
         const handleSpaceBar = (e: KeyboardEvent) => {
-            if (e.key === " ") setIsPlaying(!isPlaying);
+            if (e.key === " ") setIsPlaying(prevState => !prevState);
         };
 
         document.addEventListener("keydown", handleSpaceBar);
         return () => document.removeEventListener("keydown", handleSpaceBar);
-    }, [isPlaying]);
+    }, []);
 
     return (
         <Box
