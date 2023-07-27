@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
 import { Box, Grid, Skeleton, Typography } from "@mui/material";
-import DesertSunset from "../../images/hero/desert-sunset.jpg";
-import Forest from "../../images/hero/forest.jpg";
-import WaterRipple from "../../images/hero/water-ripple.jpg";
 import "../../styles/components/Hero.css";
 
 interface LoadStatusObject {
@@ -55,7 +52,7 @@ const Hero = () => {
                     justifyContent="center"
                 >
                     <img
-                        src={DesertSunset}
+                        src="https://moahstorage.blob.core.windows.net/assets/images/hero/desert-sunset.jpg"
                         onLoad={() => handleOnLoad("desertSunset")}
                         style={
                             displayHeroImages
@@ -93,7 +90,7 @@ const Hero = () => {
                         justifyContent="center"
                     >
                         <img
-                            src={Forest}
+                            src="https://moahstorage.blob.core.windows.net/assets/images/hero/forest.jpg"
                             onLoad={() => handleOnLoad("forest")}
                             style={
                                 displayHeroImages
@@ -124,7 +121,7 @@ const Hero = () => {
                     justifyContent="center"
                 >
                     <img
-                        src={WaterRipple}
+                        src="https://moahstorage.blob.core.windows.net/assets/images/hero/water-ripple.jpg"
                         onLoad={() => handleOnLoad("waterRipple")}
                         style={
                             displayHeroImages

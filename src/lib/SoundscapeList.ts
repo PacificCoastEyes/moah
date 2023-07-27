@@ -1,24 +1,3 @@
-import oceanThumbnail from "../images/soundscapes/thumbnails/ocean.jpg";
-import forestThumbnail from "../images/soundscapes/thumbnails/forest.jpg";
-import rainThumbnail from "../images/soundscapes/thumbnails/rain.jpg";
-import coffeeShopThumbnail from "../images/soundscapes/thumbnails/coffee-shop.jpg";
-import fireplaceThumbnail from "../images/soundscapes/thumbnails/fireplace.jpg";
-import whiteNoiseThumbnail from "../images/soundscapes/thumbnails/white-noise.jpg";
-
-import oceanFull from "../images/soundscapes/full/ocean.jpg";
-import forestFull from "../images/soundscapes/full/forest.jpg";
-import rainFull from "../images/soundscapes/full/rain.jpg";
-import coffeeShopFull from "../images/soundscapes/full/coffee-shop.jpg";
-import fireplaceFull from "../images/soundscapes/full/fireplace.jpg";
-import whiteNoiseFull from "../images/soundscapes/full/white-noise.jpg";
-
-import oceanAudio from "../audio/ocean.mp3";
-import forestAudio from "../audio/forest.mp3";
-import rainAudio from "../audio/rain.mp3";
-import coffeeShopAudio from "../audio/coffee-shop.mp3";
-import fireplaceAudio from "../audio/fireplace.mp3";
-import whiteNoiseAudio from "../audio/white-noise.mp3";
-
 interface Soundscape {
     id: string;
     label: string;
@@ -35,44 +14,50 @@ const SoundscapeList: SoundscapeDict = {
     ocean: {
         id: "ocean",
         label: "Ocean",
-        thumbnail: oceanThumbnail,
-        image: oceanFull,
-        audio: oceanAudio,
+        thumbnail:
+            "https://moahstorage.blob.core.windows.net/assets/images/soundscapes/thumbnails/ocean.jpg",
+        image: "https://moahstorage.blob.core.windows.net/assets/images/soundscapes/full/ocean.jpg",
+        audio: "https://moahstorage.blob.core.windows.net/assets/audio/ocean.mp3",
     },
     forest: {
         id: "forest",
         label: "forest",
-        thumbnail: forestThumbnail,
-        image: forestFull,
-        audio: forestAudio,
+        thumbnail:
+            "https://moahstorage.blob.core.windows.net/assets/images/soundscapes/thumbnails/forest.jpg",
+        image: "https://moahstorage.blob.core.windows.net/assets/images/soundscapes/full/forest.jpg",
+        audio: "https://moahstorage.blob.core.windows.net/assets/audio/forest.mp3",
     },
     rain: {
         id: "rain",
         label: "Rain",
-        thumbnail: rainThumbnail,
-        image: rainFull,
-        audio: rainAudio,
+        thumbnail:
+            "https://moahstorage.blob.core.windows.net/assets/images/soundscapes/thumbnails/rain.jpg",
+        image: "https://moahstorage.blob.core.windows.net/assets/images/soundscapes/full/rain.jpg",
+        audio: "https://moahstorage.blob.core.windows.net/assets/audio/rain.mp3",
     },
     coffeeShop: {
         id: "coffeeShop",
         label: "Coffee Shop",
-        thumbnail: coffeeShopThumbnail,
-        image: coffeeShopFull,
-        audio: coffeeShopAudio,
+        thumbnail:
+            "https://moahstorage.blob.core.windows.net/assets/images/soundscapes/thumbnails/coffee-shop.jpg",
+        image: "https://moahstorage.blob.core.windows.net/assets/images/soundscapes/full/coffee-shop.jpg",
+        audio: "https://moahstorage.blob.core.windows.net/assets/audio/coffee-shop.mp3",
     },
     fireplace: {
         id: "fireplace",
         label: "Fireplace",
-        thumbnail: fireplaceThumbnail,
-        image: fireplaceFull,
-        audio: fireplaceAudio,
+        thumbnail:
+            "https://moahstorage.blob.core.windows.net/assets/images/soundscapes/thumbnails/fireplace.jpg",
+        image: "https://moahstorage.blob.core.windows.net/assets/images/soundscapes/full/fireplace.jpg",
+        audio: "https://moahstorage.blob.core.windows.net/assets/audio/fireplace.mp3",
     },
     whiteNoise: {
         id: "whiteNoise",
         label: "White Noise",
-        thumbnail: whiteNoiseThumbnail,
-        image: whiteNoiseFull,
-        audio: whiteNoiseAudio,
+        thumbnail:
+            "https://moahstorage.blob.core.windows.net/assets/images/soundscapes/thumbnails/white-noise.jpg",
+        image: "https://moahstorage.blob.core.windows.net/assets/images/soundscapes/full/white-noise.jpg",
+        audio: "https://moahstorage.blob.core.windows.net/assets/audio/white-noise.mp3",
     },
 };
 

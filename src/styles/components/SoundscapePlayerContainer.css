@@ -20,7 +20,7 @@
 #soundscape-play:hover,
 #soundscape-pause:hover,
 #soundscape-back:hover {
-    box-shadow: 2px 2px 10px 2px #333;
+    box-shadow: 0px 2px 10px 2px #333;
 }
 
 #soundscape-play,
