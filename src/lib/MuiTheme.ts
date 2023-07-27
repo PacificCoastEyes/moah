@@ -7,6 +7,15 @@ const MuiTheme: ThemeOptions = {
             dark: "#5B794C",
         },
     },
+    components: {
+        MuiFormControl: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "white",
+                },
+            },
+        },
+    },
 };
 
 export default MuiTheme;

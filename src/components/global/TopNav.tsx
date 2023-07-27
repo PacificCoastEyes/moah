@@ -44,10 +44,12 @@ const TopNav = () => {
                             </Button>
                         </NavLink>
                     </Box>
-                    <Button>
-                        <LoginOutlined />
-                        Login
-                    </Button>
+                    <NavLink to="/login">
+                        <Button>
+                            <LoginOutlined />
+                            Login
+                        </Button>
+                    </NavLink>
                 </Stack>
             </Toolbar>
         </AppBar>
