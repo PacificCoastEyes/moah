@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Footer from "../components/global/Footer";
 import Header from "../components/global/Header";
 import WallpaperWrapper from "../components/global/WallpaperWrapper";
@@ -6,24 +6,10 @@ import LoginForm from "../components/Login/LoginForm";
 import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-interface ILoginForm {
-    loginEmail: string;
-    loginPassword: string;
-}
-
 const Login = () => {
     useEffect(() => {
         document.title = "Login | Moah.";
     }, []);
-
-    const [loginFormData, setLoginFormData] = useState<ILoginForm>({
-        loginEmail: "",
-        loginPassword: "",
-    });
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setLoginFormData({ ...loginFormData, [e.target.id]: e.target.value });
-    };
 
     return (
         <div id="login" className="page">
@@ -49,10 +35,7 @@ const Login = () => {
                         Don't have an account yet?{" "}
                         <Link to="/signup">Sign up</Link>
                     </Typography>
-                    <LoginForm
-                        loginFormData={loginFormData}
-                        handleChange={handleChange}
-                    />
+                    <LoginForm />
                 </Box>
             </WallpaperWrapper>
             <Footer />

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button, TextField } from "@mui/material";
 
 interface ILoginForm {
@@ -5,13 +6,16 @@ interface ILoginForm {
     loginPassword: string;
 }
 
-const LoginForm = ({
-    loginFormData,
-    handleChange,
-}: {
-    loginFormData: ILoginForm;
-    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}) => {
+const LoginForm = () => {
+    const [loginFormData, setLoginFormData] = useState<ILoginForm>({
+        loginEmail: "",
+        loginPassword: "",
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setLoginFormData({ ...loginFormData, [e.target.id]: e.target.value });
+    };
+
     return (
         <form id="login-form">
             <TextField
