@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "../../utils/AxiosInstance";
 import PasswordStrengthBar, {
     PasswordFeedback,
 } from "react-password-strength-bar";
@@ -136,11 +137,21 @@ const SignupForm = () => {
             : false;
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         let signupFormDataIsValid = false;
         signupFormDataIsValid = validateSignupFormData();
-        if (signupFormDataIsValid) console.log("VALID!");
+        try {
+            const res = await axios.post("http://localhost:5008/User/signup", {
+                firstName: signupFormData.signupFirstName,
+                email: signupFormData.signupEmail,
+                password: signupFormData.signupPassword,
+                confirmPassword: signupFormData.signupConfirmPassword,
+            });
+            console.log(res.data);
+        } catch (err) {
+            console.log("There was an error", err);
+        }
     };
 
     return (
