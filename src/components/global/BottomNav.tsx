@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import {
     CheckBoxOutlineBlank,
-    // EditNoteOutlined,
+    EditNoteOutlined,
     HeadsetOutlined,
     TipsAndUpdatesOutlined,
 } from "@mui/icons-material";
@@ -32,7 +32,6 @@ const BottomNav = () => {
             onChange={(e, newIndex) => {
                 navigate(`/${pageSlugs[newIndex]}`);
             }}
-            showLabels
             sx={{
                 display: { xs: "flex", md: "none" },
                 justifyContent: "center",
@@ -55,11 +54,11 @@ const BottomNav = () => {
                 label="Inspiration"
                 icon={<TipsAndUpdatesOutlined />}
             />
-            {/* <BottomNavigationAction
+            <BottomNavigationAction
                 id="journal"
                 label="Journal"
                 icon={<EditNoteOutlined />}
-            /> */}
+            />
         </BottomNavigation>
     );
 };

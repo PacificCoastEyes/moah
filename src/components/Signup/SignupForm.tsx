@@ -6,41 +6,41 @@ import PasswordStrengthBar, {
 import { Button, TextField } from "@mui/material";
 
 interface ISignupForm {
-    signupFirstName: string;
-    signupEmail: string;
-    signupPassword: string;
-    signupConfirmPassword: string;
+    firstName: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
 }
 
 interface IHasError {
-    signupFirstName: boolean;
-    signupEmail: boolean;
-    signupPassword: boolean;
-    signupConfirmPassword: boolean;
+    firstName: boolean;
+    email: boolean;
+    password: boolean;
+    confirmPassword: boolean;
 }
 
 const SignupForm = () => {
     const [signupFormData, setSignupFormData] = useState<ISignupForm>({
-        signupFirstName: "",
-        signupEmail: "",
-        signupPassword: "",
-        signupConfirmPassword: "",
+        firstName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
     });
 
     const [signupPasswordScore, setSignupPasswordScore] = useState<number>(0);
 
     const [helperMessages, setHelperMessages] = useState<ISignupForm>({
-        signupFirstName: "",
-        signupEmail: "",
-        signupPassword: "",
-        signupConfirmPassword: "",
+        firstName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
     });
 
     const [hasError, setHasError] = useState<IHasError>({
-        signupFirstName: false,
-        signupEmail: false,
-        signupPassword: false,
-        signupConfirmPassword: false,
+        firstName: false,
+        email: false,
+        password: false,
+        confirmPassword: false,
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,18 +59,18 @@ const SignupForm = () => {
         setSignupPasswordScore(score);
         setHelperMessages({
             ...helperMessages,
-            signupPassword: feedback.warning ? feedback.warning : "",
+            password: feedback.warning ? feedback.warning : "",
         });
         setHasError({
             ...hasError,
-            signupPassword: feedback.warning ? true : false,
+            password: feedback.warning ? true : false,
         });
     };
 
     const checkForEmptyFields = (): boolean => {
         let hasPassed = true;
         Object.keys(signupFormData).forEach(field => {
-            if (!signupFormData[field as keyof typeof signupFormData]) {
+            if (!signupFormData[field as keyof typeof signupFormData].trim()) {
                 setHelperMessages(prevState => {
                     return {
                         ...prevState,
@@ -91,11 +91,11 @@ const SignupForm = () => {
             setHelperMessages(prevState => {
                 return {
                     ...prevState,
-                    signupPassword: "Password is not strong enough",
+                    password: "Password is not strong enough",
                 };
             });
             setHasError(prevState => {
-                return { ...prevState, signupPassword: true };
+                return { ...prevState, password: true };
             });
             return false;
         }
@@ -103,18 +103,15 @@ const SignupForm = () => {
     };
 
     const checkPasswordsMatch = (): boolean => {
-        if (
-            signupFormData.signupPassword !==
-            signupFormData.signupConfirmPassword
-        ) {
+        if (signupFormData.password !== signupFormData.confirmPassword) {
             setHelperMessages(prevState => {
                 return {
                     ...prevState,
-                    signupConfirmPassword: "Passwords do not match",
+                    confirmPassword: "Passwords do not match",
                 };
             });
             setHasError(prevState => {
-                return { ...prevState, signupConfirmPassword: true };
+                return { ...prevState, confirmPassword: true };
             });
             return false;
         }
@@ -141,78 +138,81 @@ const SignupForm = () => {
         e.preventDefault();
         let signupFormDataIsValid = false;
         signupFormDataIsValid = validateSignupFormData();
-        try {
-            const res = await axios.post("http://localhost:5008/User/signup", {
-                firstName: signupFormData.signupFirstName,
-                email: signupFormData.signupEmail,
-                password: signupFormData.signupPassword,
-                confirmPassword: signupFormData.signupConfirmPassword,
-            });
-            console.log(res.data);
-        } catch (err) {
-            console.log("There was an error", err);
+        if (signupFormDataIsValid) {
+            try {
+                const res = await axios.post(
+                    "http://localhost:5008/User/signup",
+                    {
+                        firstName: signupFormData.firstName,
+                        email: signupFormData.email,
+                        password: signupFormData.password,
+                        confirmPassword: signupFormData.confirmPassword,
+                    }
+                );
+                console.log(res.data);
+            } catch (err) {
+                console.log("There was an error", err);
+            }
         }
     };
 
     return (
         <form id="signup-form" onSubmit={handleSubmit}>
             <TextField
-                id="signupFirstName"
-                // required
-                value={signupFormData.signupFirstName}
+                id="firstName"
+                value={signupFormData.firstName}
                 onChange={handleChange}
                 margin="dense"
                 fullWidth
                 variant="filled"
                 label="First Name"
-                helperText={helperMessages.signupFirstName}
-                error={hasError.signupFirstName}
+                helperText={helperMessages.firstName}
+                error={hasError.firstName}
             />
             <TextField
-                id="signupEmail"
-                // required
-                value={signupFormData.signupEmail}
+                id="email"
+                value={signupFormData.email}
                 onChange={handleChange}
                 margin="dense"
                 fullWidth
                 variant="filled"
                 label="Email"
                 type="email"
-                helperText={helperMessages.signupEmail}
-                error={hasError.signupEmail}
+                helperText={helperMessages.email}
+                error={hasError.email}
             />
             <TextField
-                id="signupPassword"
-                // required
-                value={signupFormData.signupPassword}
+                id="password"
+                value={signupFormData.password}
                 onChange={handleChange}
                 margin="dense"
                 fullWidth
                 variant="filled"
                 label="Password"
                 type="password"
-                helperText={helperMessages.signupPassword}
-                error={hasError.signupPassword}
+                helperText={helperMessages.password}
+                error={hasError.password}
             />
-            <PasswordStrengthBar
-                password={signupFormData.signupPassword}
-                minLength={8}
-                scoreWords={["Weak", "Weak", "Okay", "Good", "Strong"]}
-                shortScoreWord="Too Short"
-                onChangeScore={handleChangeScore}
-            />
+            {signupFormData.password && (
+                <PasswordStrengthBar
+                    password={signupFormData.password}
+                    minLength={8}
+                    scoreWords={["Weak", "Weak", "Okay", "Good", "Strong"]}
+                    shortScoreWord="Too Short"
+                    onChangeScore={handleChangeScore}
+                />
+            )}
             <TextField
-                id="signupConfirmPassword"
-                // required
-                value={signupFormData.signupConfirmPassword}
+                id="confirmPassword"
+                value={signupFormData.confirmPassword}
                 onChange={handleChange}
                 margin="dense"
                 fullWidth
                 variant="filled"
                 label="Confirm Password"
                 type="password"
-                helperText={helperMessages.signupConfirmPassword}
-                error={hasError.signupConfirmPassword}
+                helperText={helperMessages.confirmPassword}
+                error={hasError.confirmPassword}
             />
             <Button
                 type="submit"

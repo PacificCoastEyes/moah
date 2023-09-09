@@ -1,19 +1,13 @@
-import { Container, Typography } from "@mui/material";
-import "../../styles/components/Footer.css";
-
+import { Stack, Typography } from "@mui/material";
 const Footer = () => {
     return (
-        <Container
+        <Stack
             id="footer"
-            maxWidth={false}
-            sx={{
-                height: { xs: "100px", md: "initial" },
-                display: "flex",
-                justifyContent: { xs: "center", md: "initial" },
-                alignItems: { xs: "flex-start", md: "center" },
-            }}
+            justifyContent="center"
+            paddingX={3}
+            borderTop="1px solid #ccc"
         >
-            <Typography variant="body2" marginTop={{ xs: "12px", md: "0" }}>
+            <Typography variant="body2">
                 <a
                     href="https://flyingcolors.tech"
                     rel="noreferrer"
@@ -23,7 +17,7 @@ const Footer = () => {
                 </a>{" "}
                 &copy; {new Date().getFullYear()} Amitai Zand
             </Typography>
-        </Container>
+        </Stack>
     );
 };
 

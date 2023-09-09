@@ -2,9 +2,9 @@ import { Link, NavLink } from "react-router-dom";
 import { AppBar, Box, Button, Stack, Toolbar, Typography } from "@mui/material";
 import {
     CheckBoxOutlineBlank,
-    // EditNoteOutlined,
+    EditNoteOutlined,
     HeadsetOutlined,
-    // LoginOutlined,
+    LoginOutlined,
     TipsAndUpdatesOutlined,
 } from "@mui/icons-material";
 
@@ -37,19 +37,19 @@ const TopNav = () => {
                                 Inspiration
                             </Button>
                         </NavLink>
-                        {/* <NavLink to="/journal">
+                        <NavLink to="/journal">
                             <Button>
                                 <EditNoteOutlined />
                                 Journal
                             </Button>
-                        </NavLink> */}
+                        </NavLink>
                     </Box>
-                    {/* <NavLink to="/login">
+                    <NavLink to="/login">
                         <Button>
                             <LoginOutlined />
                             Login
                         </Button>
-                    </NavLink> */}
+                    </NavLink>
                 </Stack>
             </Toolbar>
         </AppBar>

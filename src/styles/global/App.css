@@ -24,12 +24,12 @@ p {
 
 @media screen and (max-width: 600px) {
     .page {
-        grid-template-rows: 48px auto 50px;
+        grid-template-rows: 48px auto;
     }
 }
 
 @media screen and (max-width: 462px) {
     .page {
-        grid-template-rows: 56px auto 50px;
+        grid-template-rows: 56px auto;
     }
 }

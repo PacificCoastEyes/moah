@@ -37,7 +37,6 @@ const Soundscapes = () => {
                     <SoundscapeMenuContainer />
                 </WallpaperWrapper>
             )}
-
             <Footer />
         </div>
     );
