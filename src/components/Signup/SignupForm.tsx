@@ -3,7 +3,7 @@ import axios from "../../utils/AxiosInstance";
 import PasswordStrengthBar, {
     PasswordFeedback,
 } from "react-password-strength-bar";
-import { Button, TextField } from "@mui/material";
+import { Button, CircularProgress, TextField } from "@mui/material";
 
 interface ISignupForm {
     firstName: string;
@@ -42,6 +42,8 @@ const SignupForm = () => {
         password: false,
         confirmPassword: false,
     });
+
+    const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSignupFormData(prevState => {
@@ -139,19 +141,22 @@ const SignupForm = () => {
         let signupFormDataIsValid = false;
         signupFormDataIsValid = validateSignupFormData();
         if (signupFormDataIsValid) {
+            setIsSubmitting(true);
             try {
                 const res = await axios.post(
-                    "http://localhost:5008/User/signup",
+                    "http://localhost:5194/api/Auth/signup",
                     {
-                        firstName: signupFormData.firstName,
-                        email: signupFormData.email,
-                        password: signupFormData.password,
-                        confirmPassword: signupFormData.confirmPassword,
+                        FirstName: signupFormData.firstName,
+                        Email: signupFormData.email,
+                        Password: signupFormData.password,
                     }
                 );
-                console.log(res.data);
+                const data = await res.data;
+                console.log(data);
             } catch (err) {
                 console.log("There was an error", err);
+            } finally {
+                setIsSubmitting(false);
             }
         }
     };
@@ -218,9 +223,14 @@ const SignupForm = () => {
                 type="submit"
                 fullWidth
                 variant="contained"
+                disabled={isSubmitting}
                 sx={{ marginTop: 2 }}
             >
-                Sign Up
+                {isSubmitting ? (
+                    <CircularProgress size={25} color="primary" />
+                ) : (
+                    "Sign Up"
+                )}
             </Button>
         </form>
     );

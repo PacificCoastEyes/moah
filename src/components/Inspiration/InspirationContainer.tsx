@@ -24,6 +24,7 @@ const InspirationContainer = ({
     return (
         <Box
             id="inspiration-container"
+            height={{ xs: "100%", md: "initial" }}
             width={{ xs: "90%", md: "70%" }}
             marginTop={{ xs: 5, md: 3 }}
             display="flex"
@@ -36,10 +37,6 @@ const InspirationContainer = ({
                     marginBottom={6}
                     display="flex"
                     flexDirection="column"
-                    justifyContent={{
-                        xs: "space-between",
-                        md: "center",
-                    }}
                     alignItems="center"
                 >
                     <Box display="flex" flexDirection="column">
@@ -68,11 +65,8 @@ const InspirationContainer = ({
                             onClick={shuffleQuote}
                             sx={{
                                 marginTop: 4,
-                                position: {
-                                    xs: "relative",
-                                    md: "absolute",
-                                },
-                                bottom: { md: "75px" },
+                                position: "absolute",
+                                bottom: { xs: "100px", md: "75px" },
                                 boxShadow: "0 2px 10px 2px #999",
                                 padding: "4px",
                             }}

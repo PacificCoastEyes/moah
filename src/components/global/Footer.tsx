@@ -3,6 +3,7 @@ const Footer = () => {
     return (
         <Stack
             id="footer"
+            display={{ xs: "none", md: "flex" }}
             justifyContent="center"
             paddingX={3}
             borderTop="1px solid #ccc"
