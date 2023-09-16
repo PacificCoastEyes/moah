@@ -6,6 +6,7 @@ import Inspiration from "./pages/Inspiration";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import PrivateRoute from "./PrivateRoute";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import MuiTheme from "./lib/MuiTheme";
 import "./styles/global/App.css";
@@ -33,9 +34,38 @@ function App() {
                                 path="/inspiration"
                                 element={<Inspiration />}
                             />
-                            <Route path="/dashboard" element={<Dashboard />} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/signup" element={<Signup />} />
+                            <Route
+                                path="/dashboard"
+                                element={
+                                    <PrivateRoute userShouldBe="loggedIn">
+                                        <Dashboard />
+                                    </PrivateRoute>
+                                }
+                            />
+                            <Route
+                                path="/journal"
+                                element={
+                                    <PrivateRoute userShouldBe="loggedIn">
+                                        <Dashboard />
+                                    </PrivateRoute>
+                                }
+                            />
+                            <Route
+                                path="/login"
+                                element={
+                                    <PrivateRoute userShouldBe="loggedOut">
+                                        <Login />
+                                    </PrivateRoute>
+                                }
+                            />
+                            <Route
+                                path="/signup"
+                                element={
+                                    <PrivateRoute userShouldBe="loggedOut">
+                                        <Signup />
+                                    </PrivateRoute>
+                                }
+                            />
                             <Route path="*" element={<Home />} />
                         </Routes>
                     </BrowserRouter>

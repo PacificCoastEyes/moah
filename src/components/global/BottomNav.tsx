@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import {
@@ -8,7 +8,13 @@ import {
     TipsAndUpdatesOutlined,
 } from "@mui/icons-material";
 
+import { AuthContext } from "../../contexts/AuthContext";
+import { IAuthContext } from "../../models/IAuthContext";
+
 const BottomNav = () => {
+    const authContext = useContext(AuthContext);
+    const { isLoggedIn } = authContext as IAuthContext;
+
     const navigate = useNavigate();
 
     enum pageSlugs {
@@ -29,6 +35,7 @@ const BottomNav = () => {
         <BottomNavigation
             id="bottom-nav"
             value={selectedIndex}
+            showLabels={!isLoggedIn}
             onChange={(e, newIndex) => {
                 navigate(`/${pageSlugs[newIndex]}`);
             }}
@@ -54,11 +61,13 @@ const BottomNav = () => {
                 label="Inspiration"
                 icon={<TipsAndUpdatesOutlined />}
             />
-            <BottomNavigationAction
-                id="journal"
-                label="Journal"
-                icon={<EditNoteOutlined />}
-            />
+            {isLoggedIn && (
+                <BottomNavigationAction
+                    id="journal"
+                    label="Journal"
+                    icon={<EditNoteOutlined />}
+                />
+            )}
         </BottomNavigation>
     );
 };

@@ -160,14 +160,11 @@ const SignupForm = () => {
         if (signupFormDataIsValid) {
             setIsSubmitting(true);
             try {
-                const res = await axios.post(
-                    "http://localhost:5194/api/Auth/signup",
-                    {
-                        FirstName: signupFormData.firstName,
-                        Email: signupFormData.email,
-                        Password: signupFormData.password,
-                    }
-                );
+                const res = await axios.post("/Auth/signup", {
+                    FirstName: signupFormData.firstName,
+                    Email: signupFormData.email,
+                    Password: signupFormData.password,
+                });
                 const data = await res.data;
                 localStorage.setItem("authToken", data.authToken);
                 setFirstName(data.firstName);

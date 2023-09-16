@@ -45,12 +45,14 @@ const TopNav = () => {
                                 Inspiration
                             </Button>
                         </NavLink>
-                        <NavLink to="/journal">
-                            <Button>
-                                <EditNoteOutlined />
-                                Journal
-                            </Button>
-                        </NavLink>
+                        {isLoggedIn && (
+                            <NavLink to="/journal">
+                                <Button>
+                                    <EditNoteOutlined />
+                                    Journal
+                                </Button>
+                            </NavLink>
+                        )}
                     </Box>
                     {isLoggedIn ? (
                         <NavLink to="/logout">
