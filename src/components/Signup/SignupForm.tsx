@@ -7,6 +7,8 @@ import PasswordStrengthBar, {
 } from "react-password-strength-bar";
 import { Alert, Button, CircularProgress, TextField } from "@mui/material";
 
+import { LogUserIn } from "../../utils/LogUserIn";
+
 import { AuthContext } from "../../contexts/AuthContext";
 import { IAuthContext } from "../../models/IAuthContext";
 
@@ -166,10 +168,7 @@ const SignupForm = () => {
                     Password: signupFormData.password,
                 });
                 const data = await res.data;
-                localStorage.setItem("authToken", data.authToken);
-                setFirstName(data.firstName);
-                setIsLoggedIn(true);
-                navigate("/dashboard");
+                LogUserIn(data, setFirstName, setIsLoggedIn, navigate);
             } catch (err) {
                 console.error(err);
                 setAlertMessage(

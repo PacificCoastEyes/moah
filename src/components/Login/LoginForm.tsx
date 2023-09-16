@@ -6,6 +6,7 @@ import { Alert, Button, CircularProgress, TextField } from "@mui/material";
 
 import { AuthContext } from "../../contexts/AuthContext";
 import { IAuthContext } from "../../models/IAuthContext";
+import { LogUserIn } from "../../utils/LogUserIn";
 
 interface ILoginForm {
     email: string;
@@ -48,10 +49,7 @@ const LoginForm = () => {
                 }
             );
             const data = await res.data;
-            localStorage.setItem("authToken", data.authToken);
-            setFirstName(data.firstName);
-            setIsLoggedIn(true);
-            navigate("/dashboard");
+            LogUserIn(data, setFirstName, setIsLoggedIn, navigate);
         } catch (err) {
             console.error(err);
             setAlertMessage(
