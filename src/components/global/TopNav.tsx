@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AppBar, Box, Button, Stack, Toolbar, Typography } from "@mui/material";
 import {
@@ -5,10 +6,17 @@ import {
     EditNoteOutlined,
     HeadsetOutlined,
     LoginOutlined,
+    LogoutOutlined,
     TipsAndUpdatesOutlined,
 } from "@mui/icons-material";
 
+import { AuthContext } from "../../contexts/AuthContext";
+import { IAuthContext } from "../../models/IAuthContext";
+
 const TopNav = () => {
+    const authContext = useContext(AuthContext);
+    const { isLoggedIn } = authContext as IAuthContext;
+
     return (
         <AppBar color="primary">
             <Toolbar sx={{ justifyContent: "space-between" }}>
@@ -44,12 +52,21 @@ const TopNav = () => {
                             </Button>
                         </NavLink>
                     </Box>
-                    <NavLink to="/login">
-                        <Button>
-                            <LoginOutlined />
-                            Login
-                        </Button>
-                    </NavLink>
+                    {isLoggedIn ? (
+                        <NavLink to="/logout">
+                            <Button>
+                                <LogoutOutlined />
+                                Logout
+                            </Button>
+                        </NavLink>
+                    ) : (
+                        <NavLink to="/login">
+                            <Button>
+                                <LoginOutlined />
+                                Login
+                            </Button>
+                        </NavLink>
+                    )}
                 </Stack>
             </Toolbar>
         </AppBar>

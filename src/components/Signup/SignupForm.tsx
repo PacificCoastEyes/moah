@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "../../utils/AxiosInstance";
+import { AxiosError } from "axios";
 import PasswordStrengthBar, {
     PasswordFeedback,
 } from "react-password-strength-bar";
-import { Button, CircularProgress, TextField } from "@mui/material";
+import { Alert, Button, CircularProgress, TextField } from "@mui/material";
+
+import { AuthContext } from "../../contexts/AuthContext";
+import { IAuthContext } from "../../models/IAuthContext";
 
 interface ISignupForm {
     firstName: string;
@@ -45,7 +50,17 @@ const SignupForm = () => {
 
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
+    const [showAlert, setShowAlert] = useState<boolean>(false);
+    const [alertMessage, setAlertMessage] = useState<string>("");
+
+    const authContext = useContext(AuthContext);
+    const { setIsLoggedIn, setFirstName } = authContext as IAuthContext;
+
+    const navigate = useNavigate();
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setShowAlert(false);
+        setAlertMessage("");
         setSignupFormData(prevState => {
             return { ...prevState, [e.target.id]: e.target.value };
         });
@@ -138,6 +153,8 @@ const SignupForm = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setShowAlert(false);
+        setAlertMessage("");
         let signupFormDataIsValid = false;
         signupFormDataIsValid = validateSignupFormData();
         if (signupFormDataIsValid) {
@@ -152,9 +169,18 @@ const SignupForm = () => {
                     }
                 );
                 const data = await res.data;
-                console.log(data);
+                localStorage.setItem("authToken", data.authToken);
+                setFirstName(data.firstName);
+                setIsLoggedIn(true);
+                navigate("/dashboard");
             } catch (err) {
-                console.log("There was an error", err);
+                console.error(err);
+                setAlertMessage(
+                    err instanceof AxiosError && err.response
+                        ? err.response.data
+                        : "Oops! There was a problem signing you up. Are you offline?"
+                );
+                setShowAlert(true);
             } finally {
                 setIsSubmitting(false);
             }
@@ -219,12 +245,17 @@ const SignupForm = () => {
                 helperText={helperMessages.confirmPassword}
                 error={hasError.confirmPassword}
             />
+            {showAlert && (
+                <Alert severity="error" sx={{ marginY: 1 }}>
+                    {alertMessage}
+                </Alert>
+            )}
             <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 disabled={isSubmitting}
-                sx={{ marginTop: 2 }}
+                sx={{ marginTop: showAlert ? 0 : 1 }}
             >
                 {isSubmitting ? (
                     <CircularProgress size={25} color="primary" />
