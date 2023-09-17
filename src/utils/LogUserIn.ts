@@ -14,5 +14,5 @@ export const LogUserIn = (
     localStorage.setItem("authToken", user.authToken);
     setFirstName(user.firstName);
     setIsLoggedIn(true);
-    navigate("/dashboard");
+    navigate("/journal");
 };

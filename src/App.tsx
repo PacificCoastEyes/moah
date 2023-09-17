@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import BoxBreathing from "./pages/BoxBreathing";
 import Soundscapes from "./pages/Soundscapes";
 import Inspiration from "./pages/Inspiration";
-import Dashboard from "./pages/Dashboard";
+import Journal from "./pages/Journal";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PrivateRoute from "./PrivateRoute";
@@ -21,24 +21,35 @@ function App() {
                 <AuthContextProvider>
                     <BrowserRouter>
                         <Routes>
-                            <Route path="/" element={<Home />} />
+                            <Route
+                                path="/"
+                                element={
+                                    <PrivateRoute userShouldBe="loggedOut">
+                                        <Home />
+                                    </PrivateRoute>
+                                }
+                            />
                             <Route
                                 path="/boxbreathing"
-                                element={<BoxBreathing />}
+                                element={
+                                    <PrivateRoute>
+                                        <BoxBreathing />
+                                    </PrivateRoute>
+                                }
                             />
                             <Route
                                 path="/soundscapes"
-                                element={<Soundscapes />}
+                                element={
+                                    <PrivateRoute>
+                                        <Soundscapes />
+                                    </PrivateRoute>
+                                }
                             />
                             <Route
                                 path="/inspiration"
-                                element={<Inspiration />}
-                            />
-                            <Route
-                                path="/dashboard"
                                 element={
-                                    <PrivateRoute userShouldBe="loggedIn">
-                                        <Dashboard />
+                                    <PrivateRoute>
+                                        <Inspiration />
                                     </PrivateRoute>
                                 }
                             />
@@ -46,7 +57,7 @@ function App() {
                                 path="/journal"
                                 element={
                                     <PrivateRoute userShouldBe="loggedIn">
-                                        <Dashboard />
+                                        <Journal />
                                     </PrivateRoute>
                                 }
                             />
@@ -66,7 +77,18 @@ function App() {
                                     </PrivateRoute>
                                 }
                             />
-                            <Route path="*" element={<Home />} />
+                            <Route
+                                path="/logout"
+                                element={<Home isLoggingOut={true} />}
+                            />
+                            <Route
+                                path="*"
+                                element={
+                                    <PrivateRoute>
+                                        <Home />
+                                    </PrivateRoute>
+                                }
+                            />
                         </Routes>
                     </BrowserRouter>
                 </AuthContextProvider>

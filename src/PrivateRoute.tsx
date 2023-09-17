@@ -9,7 +9,7 @@ const PrivateRoute = ({
     userShouldBe,
     children,
 }: {
-    userShouldBe: string;
+    userShouldBe?: string;
     children: React.PropsWithChildren<JSX.Element>;
 }): JSX.Element => {
     const authContext = useContext(AuthContext);
@@ -48,9 +48,9 @@ const PrivateRoute = ({
         if (userShouldBe === "loggedIn") {
             return isLoggedIn ? children : <Navigate to="/login" />;
         } else if (userShouldBe === "loggedOut") {
-            return isLoggedIn ? <Navigate to="/dashboard" /> : children;
+            return isLoggedIn ? <Navigate to="/journal" /> : children;
         } else {
-            return <Navigate to="/" />;
+            return children;
         }
     }
 };
