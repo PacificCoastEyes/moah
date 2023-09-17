@@ -6,6 +6,9 @@ const MuiTheme: ThemeOptions = {
             main: "#769469",
             dark: "#5B794C",
         },
+        secondary: {
+            main: "#aaa",
+        },
     },
     components: {
         MuiFormControl: {

@@ -21,8 +21,10 @@ const Home = ({ isLoggingOut }: { isLoggingOut?: boolean }) => {
     const { setIsLoggedIn, setFirstName } = authContext as IAuthContext;
 
     useEffect(() => {
-        if (isLoggingOut) setShowLogoutAlert(true);
-        LogUserOut(setIsLoggedIn, setFirstName);
+        if (isLoggingOut) {
+            setShowLogoutAlert(true);
+            LogUserOut(setIsLoggedIn, setFirstName);
+        }
     }, [isLoggingOut, setIsLoggedIn, setFirstName]);
 
     return (

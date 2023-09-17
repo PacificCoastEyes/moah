@@ -44,7 +44,7 @@ const InspirationContainer = ({
                             variant="h3"
                             fontSize={{ xs: "2rem", md: "3rem" }}
                             fontFamily="'Lilita One', Arial, sans-serif"
-                            color="#769469"
+                            color="primary"
                         >
                             {selectedQuote.content}
                         </Typography>
@@ -55,7 +55,7 @@ const InspirationContainer = ({
                             marginTop={4}
                             fontSize={{ xs: "1.43rem", md: "2.125rem" }}
                             fontFamily="'Lilita One', Arial, sans-serif"
-                            color="#aaa"
+                            color="secondary"
                         >
                             {selectedQuote.author}
                         </Typography>
