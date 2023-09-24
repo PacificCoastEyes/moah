@@ -9,6 +9,7 @@ import { CloudDoneOutlined } from "@mui/icons-material";
 import { IJournalEntry } from "../../../models/IJournalEntry";
 
 import "react-quill/dist/quill.snow.css";
+import "../../../styles/components/ComposeContainer.css";
 
 const ComposeContainer = () => {
     const [isInitializing, setIsInitializing] = useState<boolean>(true);
