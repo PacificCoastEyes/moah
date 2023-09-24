@@ -8,7 +8,7 @@ const JournalMenu = () => {
     return (
         <Stack direction="row" justifyContent="space-evenly" marginTop={3}>
             <Button
-                onClick={() => navigate("/journal/mood-check")}
+                onClick={() => navigate("/journal/compose")}
                 variant="contained"
                 sx={{
                     height: "150px",

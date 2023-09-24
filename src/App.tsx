@@ -4,8 +4,10 @@ import BoxBreathing from "./pages/BoxBreathing";
 import Soundscapes from "./pages/Soundscapes";
 import Inspiration from "./pages/Inspiration";
 import Journal from "./pages/Journal";
+import Compose from "./pages/Compose";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import RestoreSession from "./RestoreSession";
 import PrivateRoute from "./PrivateRoute";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import MuiTheme from "./lib/MuiTheme";
@@ -22,59 +24,77 @@ function App() {
                     <BrowserRouter>
                         <Routes>
                             <Route
-                                path="/"
+                                index
                                 element={
-                                    <PrivateRoute userShouldBe="loggedOut">
+                                    <RestoreSession>
                                         <Home />
-                                    </PrivateRoute>
+                                    </RestoreSession>
                                 }
                             />
                             <Route
                                 path="/boxbreathing"
                                 element={
-                                    <PrivateRoute>
+                                    <RestoreSession>
                                         <BoxBreathing />
-                                    </PrivateRoute>
+                                    </RestoreSession>
                                 }
                             />
                             <Route
                                 path="/soundscapes"
                                 element={
-                                    <PrivateRoute>
+                                    <RestoreSession>
                                         <Soundscapes />
-                                    </PrivateRoute>
+                                    </RestoreSession>
                                 }
                             />
                             <Route
                                 path="/inspiration"
                                 element={
-                                    <PrivateRoute>
+                                    <RestoreSession>
                                         <Inspiration />
-                                    </PrivateRoute>
+                                    </RestoreSession>
                                 }
                             />
-                            <Route
-                                path="/journal"
-                                element={
-                                    <PrivateRoute userShouldBe="loggedIn">
-                                        <Journal />
-                                    </PrivateRoute>
-                                }
-                            />
+                            <Route path="journal">
+                                <Route
+                                    index
+                                    element={
+                                        <RestoreSession>
+                                            <PrivateRoute userShouldBe="loggedIn">
+                                                <Journal />
+                                            </PrivateRoute>
+                                        </RestoreSession>
+                                    }
+                                />
+                                <Route
+                                    path="compose"
+                                    element={
+                                        <RestoreSession>
+                                            <PrivateRoute userShouldBe="loggedIn">
+                                                <Compose />
+                                            </PrivateRoute>
+                                        </RestoreSession>
+                                    }
+                                />
+                            </Route>
                             <Route
                                 path="/login"
                                 element={
-                                    <PrivateRoute userShouldBe="loggedOut">
-                                        <Login />
-                                    </PrivateRoute>
+                                    <RestoreSession>
+                                        <PrivateRoute userShouldBe="loggedOut">
+                                            <Login />
+                                        </PrivateRoute>
+                                    </RestoreSession>
                                 }
                             />
                             <Route
                                 path="/signup"
                                 element={
-                                    <PrivateRoute userShouldBe="loggedOut">
-                                        <Signup />
-                                    </PrivateRoute>
+                                    <RestoreSession>
+                                        <PrivateRoute userShouldBe="loggedOut">
+                                            <Signup />
+                                        </PrivateRoute>
+                                    </RestoreSession>
                                 }
                             />
                             <Route
@@ -84,9 +104,9 @@ function App() {
                             <Route
                                 path="*"
                                 element={
-                                    <PrivateRoute>
+                                    <RestoreSession>
                                         <Home />
-                                    </PrivateRoute>
+                                    </RestoreSession>
                                 }
                             />
                         </Routes>
