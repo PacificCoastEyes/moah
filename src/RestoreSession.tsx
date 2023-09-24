@@ -38,6 +38,7 @@ const RestoreSession = ({
         if (!isLoggedIn) {
             validateToken();
         } else {
+            // Need to initialize validating state to true above to "hold" the component momentarily before returning, or else private route will not work because isLoggedIn state won't be updated in time and the private route will divert to rejection path
             setIsValidatingToken(false);
         }
     }, [validateToken, isLoggedIn]);
