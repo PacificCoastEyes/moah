@@ -8,6 +8,7 @@ const instance = axios.create({
         process.env.NODE_ENV === "development"
             ? "http://localhost:5194/api"
             : "https://moah-api.azurewebsites.net/api",
+    withCredentials: process.env.NODE_ENV === "development" ? false : true,
 });
 
 export default instance;
