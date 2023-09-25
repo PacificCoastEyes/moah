@@ -41,13 +41,10 @@ const LoginForm = () => {
         setAlertMessage("");
         setIsSubmitting(true);
         try {
-            const res = await axios.post(
-                "http://localhost:5194/api/Auth/login",
-                {
-                    Email: loginFormData.email,
-                    Password: loginFormData.password,
-                }
-            );
+            const res = await axios.post("/Auth/login", {
+                Email: loginFormData.email,
+                Password: loginFormData.password,
+            });
             const data = await res.data;
             LogUserIn(data, setFirstName, setIsLoggedIn, navigate);
         } catch (err) {
