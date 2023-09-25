@@ -35,14 +35,21 @@ const ComposeEditorMain = ({
                 },
             }}
         >
-            <ReactQuill
-                value={value}
-                onChange={handleChange}
-                theme="snow"
-                style={{
-                    height: "calc(100% - 42.5px)",
+            <Box
+                height={{
+                    xs: "calc(100% - 67.5px)",
+                    md: "calc(100% - 42.5px)",
                 }}
-            />
+            >
+                <ReactQuill
+                    value={value}
+                    onChange={handleChange}
+                    theme="snow"
+                    style={{
+                        height: "100%",
+                    }}
+                />
+            </Box>
         </Box>
     );
 };
