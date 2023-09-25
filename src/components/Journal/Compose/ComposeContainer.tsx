@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "../../../utils/AxiosInstance";
 import { AxiosError } from "axios";
 import ComposeEditorContainer from "./ComposeEditorContainer";
-import { Alert, CircularProgress, Stack } from "@mui/material";
+import { Alert, CircularProgress, IconButton, Stack } from "@mui/material";
+import { ArrowBackRounded } from "@mui/icons-material";
 import { IJournalEntry } from "../../../models/IJournalEntry";
 
 const ComposeContainer = () => {
@@ -23,8 +24,45 @@ const ComposeContainer = () => {
         useState<string>("");
 
     const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
 
-    const initializeEntry = useCallback(async () => {
+    const initializeExistingEntry = useCallback(async (entryId: string) => {
+        try {
+            const res = await axios.get(
+                `/Journal/get-entry-by-id?id=${entryId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "authToken"
+                        )}`,
+                    },
+                }
+            );
+            const entry = await res.data;
+            setEntryData({
+                id: entry.id,
+                created_at: new Date(
+                    entry.metadata.creationTime
+                ).toLocaleDateString(),
+                content: entry.content,
+                snippet: entry.snippet,
+            });
+        } catch (err) {
+            console.error(err);
+            setInitializeAlertMessage(
+                err instanceof AxiosError && err.response
+                    ? err.response.data.length
+                        ? err.response.data
+                        : "Oops! There was a problem loading your journal entry."
+                    : "Oops! There was a problem loading your journal entry. Are you offline?"
+            );
+            setShowInitializeAlert(true);
+        } finally {
+            setIsInitializing(false);
+        }
+    }, []);
+
+    const initializeNewEntry = useCallback(async () => {
         try {
             const res = await axios.post(
                 "/Journal/initialize-entry",
@@ -64,7 +102,12 @@ const ComposeContainer = () => {
     }, [setSearchParams, searchParams]);
 
     useEffect(() => {
-        initializeEntry();
+        const entryId = searchParams.get("id");
+        if (entryId) {
+            initializeExistingEntry(entryId);
+        } else {
+            initializeNewEntry();
+        }
         // eslint-disable-next-line
     }, []);
 
@@ -78,7 +121,14 @@ const ComposeContainer = () => {
             {isInitializing ? (
                 <CircularProgress size={100} thickness={4} />
             ) : showInitializeAlert ? (
-                <Alert severity="error">{initializeAlertMessage}</Alert>
+                <Stack direction="row" alignItems="center" marginTop={2}>
+                    <IconButton onClick={() => navigate("/journal")}>
+                        <ArrowBackRounded />
+                    </IconButton>
+                    <Alert severity="error" sx={{ marginLeft: 1 }}>
+                        {initializeAlertMessage}
+                    </Alert>
+                </Stack>
             ) : (
                 <ComposeEditorContainer
                     entryData={entryData}
