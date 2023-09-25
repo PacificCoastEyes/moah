@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { Alert, IconButton, Stack, Typography } from "@mui/material";
+import { Alert, IconButton, Stack, Tooltip, Typography } from "@mui/material";
 import {
     ArrowBackRounded,
     CloudDoneOutlined,
@@ -44,11 +44,13 @@ const ComposeEditorHeader = ({
                     </Typography>
                 </Stack>
                 {isAutoSaving ? (
-                    <CloudSyncOutlined
-                        sx={{
-                            color: theme => theme.palette.secondary.main,
-                        }}
-                    />
+                    <Tooltip title="Saving ..." placement="left" arrow>
+                        <CloudSyncOutlined
+                            sx={{
+                                color: theme => theme.palette.secondary.main,
+                            }}
+                        />
+                    </Tooltip>
                 ) : showAutoSaveAlert ? (
                     <Stack direction="row" alignItems="center">
                         <Alert
@@ -69,11 +71,13 @@ const ComposeEditorHeader = ({
                         />
                     </Stack>
                 ) : (
-                    <CloudDoneOutlined
-                        sx={{
-                            color: theme => theme.palette.secondary.main,
-                        }}
-                    />
+                    <Tooltip title="All changes saved" placement="left" arrow>
+                        <CloudDoneOutlined
+                            sx={{
+                                color: theme => theme.palette.secondary.main,
+                            }}
+                        />
+                    </Tooltip>
                 )}
             </Stack>
             {showAutoSaveAlert && (
