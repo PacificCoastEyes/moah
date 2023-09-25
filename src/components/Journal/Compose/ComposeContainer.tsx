@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "../../../utils/AxiosInstance";
 import { AxiosError } from "axios";
-import ComposeEditor from "./ComposeEditor";
+import ComposeEditorContainer from "./ComposeEditorContainer";
 import { Alert, CircularProgress, Stack } from "@mui/material";
 import { IJournalEntry } from "../../../models/IJournalEntry";
 
@@ -76,7 +76,7 @@ const ComposeContainer = () => {
             ) : showAlert ? (
                 <Alert severity="error">{alertMessage}</Alert>
             ) : (
-                <ComposeEditor
+                <ComposeEditorContainer
                     entryData={entryData}
                     setEntryData={setEntryData}
                 />
