@@ -173,7 +173,9 @@ const SignupForm = () => {
                 console.error(err);
                 setAlertMessage(
                     err instanceof AxiosError && err.response
-                        ? err.response.data
+                        ? err.response.data.length
+                            ? err.response.data
+                            : "Oops! There was a problem signing you up."
                         : "Oops! There was a problem signing you up. Are you offline?"
                 );
                 setShowAlert(true);

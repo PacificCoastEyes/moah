@@ -54,7 +54,9 @@ const LoginForm = () => {
             console.error(err);
             setAlertMessage(
                 err instanceof AxiosError && err.response
-                    ? err.response.data
+                    ? err.response.data.length
+                        ? err.response.data
+                        : "Oops! There was a problem logging you in."
                     : "Oops! There was a problem logging you in. Are you offline?"
             );
             setShowAlert(true);

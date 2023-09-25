@@ -17,8 +17,10 @@ const ComposeContainer = () => {
     const [isInitializing, setIsInitializing] = useState<boolean>(true);
     const [entryData, setEntryData] =
         useState<IJournalEntry>(blankJournalEntry);
-    const [showAlert, setShowAlert] = useState<boolean>(false);
-    const [alertMessage, setAlertMessage] = useState<string>("");
+    const [showInitializeAlert, setShowInitializeAlert] =
+        useState<boolean>(false);
+    const [initializeAlertMessage, setInitializeAlertMessage] =
+        useState<string>("");
 
     const [searchParams, setSearchParams] = useSearchParams();
 
@@ -48,12 +50,14 @@ const ComposeContainer = () => {
             setSearchParams({ ...searchParams, id: entry.id });
         } catch (err) {
             console.error(err);
-            setAlertMessage(
+            setInitializeAlertMessage(
                 err instanceof AxiosError && err.response
-                    ? err.response.data
+                    ? err.response.data.length
+                        ? err.response.data
+                        : "Oops! There was a problem getting a journal entry started."
                     : "Oops! There was a problem getting a journal entry started. Are you offline?"
             );
-            setShowAlert(true);
+            setShowInitializeAlert(true);
         } finally {
             setIsInitializing(false);
         }
@@ -73,8 +77,8 @@ const ComposeContainer = () => {
         >
             {isInitializing ? (
                 <CircularProgress size={100} thickness={4} />
-            ) : showAlert ? (
-                <Alert severity="error">{alertMessage}</Alert>
+            ) : showInitializeAlert ? (
+                <Alert severity="error">{initializeAlertMessage}</Alert>
             ) : (
                 <ComposeEditorContainer
                     entryData={entryData}
