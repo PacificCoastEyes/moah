@@ -5,6 +5,7 @@ const instance = axios.create({
         return status < 400;
     },
     baseURL:
+        // Switch backend URL depending on environment
         process.env.NODE_ENV === "development"
             ? "http://localhost:5194/api"
             : "https://moah-api.azurewebsites.net/api",
