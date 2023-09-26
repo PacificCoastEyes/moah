@@ -23,7 +23,7 @@ const ComposeEditorMain = ({
             marginTop={3}
             sx={{
                 backgroundColor: "white",
-                "& p": { color: "black", fontSize: "1.25em" },
+                "& p": { color: "black" },
                 "& .ql-toolbar.ql-snow, .ql-container.ql-snow": {
                     borderColor: theme => theme.palette.primary.main,
                 },

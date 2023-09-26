@@ -8,6 +8,7 @@ const MuiTheme: ThemeOptions = {
         },
         secondary: {
             main: "#aaa",
+            light: "#eee",
         },
     },
     components: {

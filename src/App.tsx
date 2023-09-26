@@ -5,6 +5,7 @@ import Soundscapes from "./pages/Soundscapes";
 import Inspiration from "./pages/Inspiration";
 import Journal from "./pages/Journal";
 import Compose from "./pages/Compose";
+import Archive from "./pages/Archive";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import RestoreSession from "./RestoreSession";
@@ -72,6 +73,16 @@ function App() {
                                         <RestoreSession>
                                             <PrivateRoute userShouldBe="loggedIn">
                                                 <Compose />
+                                            </PrivateRoute>
+                                        </RestoreSession>
+                                    }
+                                />
+                                <Route
+                                    path="archive"
+                                    element={
+                                        <RestoreSession>
+                                            <PrivateRoute userShouldBe="loggedIn">
+                                                <Archive />
                                             </PrivateRoute>
                                         </RestoreSession>
                                     }
