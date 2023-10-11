@@ -54,7 +54,7 @@ const TopNav = () => {
                             </NavLink>
                         )}
                     </Box>
-                    {isLoggedIn ? (
+                    {/* {isLoggedIn ? (
                         <NavLink to="/logout">
                             <Button>
                                 <LogoutOutlined />
@@ -68,7 +68,7 @@ const TopNav = () => {
                                 Login
                             </Button>
                         </NavLink>
-                    )}
+                    )} */}
                 </Stack>
             </Toolbar>
         </AppBar>
