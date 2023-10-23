@@ -5,8 +5,8 @@ import {
     CheckBoxOutlineBlank,
     EditNoteOutlined,
     HeadsetOutlined,
-    // LoginOutlined,
-    // LogoutOutlined,
+    LoginOutlined,
+    LogoutOutlined,
     TipsAndUpdatesOutlined,
 } from "@mui/icons-material";
 
@@ -54,7 +54,7 @@ const TopNav = () => {
                             </NavLink>
                         )}
                     </Box>
-                    {/* {isLoggedIn ? (
+                    {isLoggedIn ? (
                         <NavLink to="/logout">
                             <Button>
                                 <LogoutOutlined />
@@ -68,7 +68,7 @@ const TopNav = () => {
                                 Login
                             </Button>
                         </NavLink>
-                    )} */}
+                    )}
                 </Stack>
             </Toolbar>
         </AppBar>
