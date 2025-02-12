@@ -34,7 +34,7 @@ const Inspiration = () => {
   const fetchQuotes = useCallback(async () => {
     try {
       const res = await axios(
-        "http://api.quotable.io/quotes/random?limit=50&maxLength=160",
+        "https://api.quotable.io/quotes/random?limit=50&maxLength=160",
         { withCredentials: false }
       );
       setQuotes(res.data);
